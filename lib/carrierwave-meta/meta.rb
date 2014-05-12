@@ -32,10 +32,11 @@ module CarrierWave
         width, height = dimensions
         self.content_type = self.file.content_type
         self.file_size = self.file.size
-        self.image_size = dimensions
+        self.image_size = image_size_s
         self.width = width
         self.height = height
-        self.proportion = width.to_f / height.to_f
+        self.proportion = self.width.to_f / self.height.to_f
+        Rails.logger.info(self.proportion) unless Rails.env.production?
         if options[:md5sum]
           self.md5sum = Digest::MD5.hexdigest(File.read(self.file.path))
         end
