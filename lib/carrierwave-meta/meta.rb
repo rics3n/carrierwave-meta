@@ -22,6 +22,8 @@ module CarrierWave
       model_delegate_attribute :width, 0
       model_delegate_attribute :height, 0
       model_delegate_attribute :md5sum, ''
+      model_delegate_attribute :proportion, 0.0
+      model_delegate_attribute :type, ''
     end
 
     def store_meta(options = {})
