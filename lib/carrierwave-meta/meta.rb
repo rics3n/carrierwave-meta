@@ -18,7 +18,7 @@ module CarrierWave
 
       model_delegate_attribute :content_type, ''
       model_delegate_attribute :file_size, 0
-      model_delegate_attribute :image_size, ''
+      model_delegate_attribute :image_size, []
       model_delegate_attribute :width, 0
       model_delegate_attribute :height, 0
       model_delegate_attribute :md5sum, ''
@@ -32,7 +32,7 @@ module CarrierWave
         width, height = dimensions
         self.content_type = self.file.content_type
         self.file_size = self.file.size
-        self.image_size = image_size_s
+        self.image_size = dimensions
         self.width = width
         self.height = height
         self.proportion = self.width.to_f / self.height.to_f
