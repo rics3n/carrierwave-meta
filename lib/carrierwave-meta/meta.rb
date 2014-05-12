@@ -18,7 +18,7 @@ module CarrierWave
 
       model_delegate_attribute :content_type, ''
       model_delegate_attribute :file_size, 0
-      model_delegate_attribute :image_size, []
+      model_delegate_attribute :image_size, ''
       model_delegate_attribute :width, 0
       model_delegate_attribute :height, 0
       model_delegate_attribute :md5sum, ''
@@ -36,7 +36,9 @@ module CarrierWave
         self.width = width
         self.height = height
         self.proportion = self.width.to_f / self.height.to_f
-        Rails.logger.info(self.proportion) unless Rails.env.production?
+
+        self.type = get_type(self.proportion)
+
         if options[:md5sum]
           self.md5sum = Digest::MD5.hexdigest(File.read(self.file.path))
         end
@@ -57,6 +59,18 @@ module CarrierWave
           try(:[], 1)
 
         store_meta(*processor_options)
+      end
+    end
+
+    def get_type(proportion)
+      if proportion < 0.75
+        "VERTICAL"
+      elsif proportion > 1.8
+        "HORIZONTAL_WIDE"
+      elsif proportion > 1.25
+        "HORIZONTAL"
+      else
+        "SQUARE"
       end
     end
 
