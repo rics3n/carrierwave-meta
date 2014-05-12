@@ -33,6 +33,7 @@ module CarrierWave
         self.image_size = dimensions
         self.width = width
         self.height = height
+        self.proportion = width.to_f / height.to_f
         if options[:md5sum]
           self.md5sum = Digest::MD5.hexdigest(File.read(self.file.path))
         end
