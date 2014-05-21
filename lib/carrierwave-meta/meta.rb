@@ -63,11 +63,11 @@ module CarrierWave
     end
 
     def get_type(proportion)
-      if proportion < 0.75
+      if proportion < 0.5
         "VERTICAL"
-      elsif proportion > 1.8
+      elsif proportion > 2.0
         "HORIZONTAL_WIDE"
-      elsif proportion > 1.25
+      elsif proportion > 1.3
         "HORIZONTAL"
       else
         "SQUARE"
