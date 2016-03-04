@@ -9,7 +9,7 @@ module CarrierWave
       include CarrierWave::ModelDelegateAttribute
       include CarrierWave::MimeTypes
 
-      set_content_type(true)
+      #set_content_type(true)
 
       #after :retrieve_from_cache, :set_content_type
       after :retrieve_from_cache, :call_store_meta
