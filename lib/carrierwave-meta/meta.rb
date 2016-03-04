@@ -11,9 +11,9 @@ module CarrierWave
 
       set_content_type(true)
 
-      after :retrieve_from_cache, :set_content_type
+      #after :retrieve_from_cache, :set_content_type
       after :retrieve_from_cache, :call_store_meta
-      after :retrieve_from_store, :set_content_type unless storage.name =~ /Fog/
+      #after :retrieve_from_store, :set_content_type unless storage.name =~ /Fog/
       after :retrieve_from_store, :call_store_meta
 
       model_delegate_attribute :content_type, ''
